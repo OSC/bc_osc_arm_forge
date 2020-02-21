@@ -26,20 +26,28 @@ cd "${HOME}"
 ) &
 
 #
-# Start MATLAB
+# Start ARM DDT || MAP
 #
 
 # Load the required environment
-module load xalt/latest <%= context.version %>
+module load intel/18.0.2
+module load mvapich2/2.3
+module load arm-ddt
+module load arm-map
 
-# Launch MATLAB
-<%- if gpu -%>
-module load intel/16.0.3 virtualgl
-module list
-set -x
-vglrun matlab -desktop -nosoftwareopengl
-<%- else -%>
-module list
-set -x
-matlab -desktop
-<%- end -%>
+# Launch ddt
+<% if context.version.eql? "ARM DDT" %>
+  <% if context.MPI_option.eql? "MPI program"%>
+    ddt -no-mpi <%= context.program_name %>
+  <% else %>
+
+  <% end %>
+  ddt --node= <%= context.num_nodes%> -np <%= context.num_cores %> <%= context.program_name %>
+<% else %>
+  <% if context.MPI_option.eql? "MPI program"%>
+      map --profile --no-mpi <%= context.program_name %>
+   <% else %>
+      map --profile -np <%= context.num_cores %> <%= context.program_name %>
+   <% end %>
+<% end %>
+

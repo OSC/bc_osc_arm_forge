@@ -1,11 +1,11 @@
 ---
-name: MATLAB
+name: ARM Forge
 category: Interactive Apps
 subcategory: GUIs
 role: batch_connect
 description: |
-  This app will launch a [MATLAB] GUI on the [Owens cluster]. You will be able
-  to interact with the MATLAB GUI through a VNC session.
+  This app will launch a [ARM] GUI on the [Owens cluster]. You will be able
+  to interact with the ARM GUI through a VNC session.
 
-  [MATLAB]: https://www.mathworks.com/products/matlab.html
+  [ARM]: https://www.arm.com/products/development-tools/server-and-hpc/forge
   [Owens cluster]: https://www.osc.edu/resources/technical_support/supercomputers/owens

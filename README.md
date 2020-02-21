@@ -1,9 +1,8 @@
-# Batch Connect - OSC MATLAB
+# Batch Connect - OSC ARM Forge
 
-![GitHub Release](https://img.shields.io/github/release/osc/bc_osc_matlab.svg)
 [![GitHub License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-A Batch Connect app designed for OSC OnDemand that launches MATLAB within an
+A Batch Connect app designed for OSC OnDemand that launches ARM DDT or MAP within an
 Owens batch job.
 
 ## Prerequisites
@@ -12,7 +11,8 @@ This Batch Connect app requires the following software be installed on the
 **compute nodes** that the batch job is intended to run on (**NOT** the
 OnDemand node):
 
-- [MATLAB] R2016b+
+- [ARM DDT]
+- [ARM MAP] 
 - [Xfce Desktop] 4+
 
 For VNC server support:
@@ -30,7 +30,7 @@ For hardware rendering support:
 - [Lmod] 6.0.1+ or any other `module purge` and `module load <modules>` based
   CLI used to load appropriate environments within the batch job
 
-[MATLAB]: https://www.mathworks.com/
+[ARM Forge]: https://www.arm.com/products/development-tools/server-and-hpc/forge
 [Xfce Desktop]: https://xfce.org/
 [TurboVNC]: http://www.turbovnc.org/
 [websockify]: https://github.com/novnc/websockify
@@ -65,7 +65,7 @@ Again, you do not need to restart the app as it isn't a Passenger app.
 
 ## Contributing
 
-1. Fork it ( https://github.com/OSC/bc_osc_matlab/fork )
+1. Fork it ( https://github.com/OSC/bc_osc_arm_forge/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
