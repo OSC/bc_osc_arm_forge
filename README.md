@@ -31,6 +31,8 @@ For hardware rendering support:
   CLI used to load appropriate environments within the batch job
 
 [ARM Forge]: https://www.arm.com/products/development-tools/server-and-hpc/forge
+[ARM DDT]: https://www.arm.com/products/development-tools/server-and-hpc/forge/ddt
+[ARM MAP]: https://www.arm.com/products/development-tools/server-and-hpc/forge/map
 [Xfce Desktop]: https://xfce.org/
 [TurboVNC]: http://www.turbovnc.org/
 [websockify]: https://github.com/novnc/websockify
