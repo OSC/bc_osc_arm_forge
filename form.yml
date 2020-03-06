@@ -53,18 +53,18 @@ attributes:
     widget: select
     label: "ARM Application"
     options:
-      - [ "6.0.6", "ARM DDT" ]
-      - [ "6.0.6", "ARM MAP" ]
-      - [ "7.0", "ARM DDT" ]
-      - [ "7.0", "ARM MAP" ]
-      - [ "7.1", "ARM DDT" ]
-      - [ "7.1", "ARM MAP" ]
-      - [ "18.2.1", "ARM DDT" ]
-      - [ "18.2.1", "ARM MAP" ]
-      - [ "19.0.1", "ARM DDT" ]
-      - [ "19.0.1", "ARM MAP" ]
-      - [ "19.1.2", "ARM DDT" ]
-      - [ "19.1.2", "ARM MAP" ]
+      - [ "arm-ddt/6.0.6" ]
+      - [ "arm-map/6.0.6" ]
+      - [ "arm-ddt/7.0" ]
+      - [ "arm-map/7.0" ]
+      - [ "arm-ddt/7.1" ]
+      - [ "arm-map/7.1" ]
+      - [ "arm-ddt/18.2.1" ]
+      - [ "arm-map/18.2.1" ]
+      - [ "arm-ddt/19.0.1" ]
+      - [ "arm-map/19.0.1" ]
+      - [ "arm-ddt/19.1.2" ]
+      - [ "arm-map/19.1.2" ]
   MPI_option:
     widget: select
     label: MPI option
