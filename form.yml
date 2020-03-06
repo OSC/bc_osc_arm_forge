@@ -6,7 +6,6 @@ form:
   - bc_num_hours
   - bc_num_slots
   - num_cores
-  - num_nodes
   - MPI_option
   - program_name
   - node_type
@@ -33,14 +32,6 @@ attributes:
   program_name:
     label: Program Name/Path and [args]
     help: Program to be debugged **must** have the **"-g flag"** when compiled. Also **remove** optimization or set to -O0. **This does not apply to ARM Map.**
-  num_nodes:
-    widget: "number_field"
-    label: "Number of nodes"
-    value: 1
-    min: 0
-    max: 824
-    step: 1
-    id: 'num_nodes'
   node_type:
     widget: select
     label: "Node type"
@@ -60,11 +51,20 @@ attributes:
       - [ "vis",     ":vis:gpus=1" ]
   version:
     widget: select
-    label: "ARM application"
-    help: "This defines the ARM application you want to load."
+    label: "ARM Application"
     options:
-      - [ "ARM DDT" ]
-      - [ "ARM Map" ]
+      - [ "6.0.6", "ARM DDT" ]
+      - [ "6.0.6", "ARM MAP" ]
+      - [ "7.0", "ARM DDT" ]
+      - [ "7.0", "ARM MAP" ]
+      - [ "7.1", "ARM DDT" ]
+      - [ "7.1", "ARM MAP" ]
+      - [ "18.2.1", "ARM DDT" ]
+      - [ "18.2.1", "ARM MAP" ]
+      - [ "19.0.1", "ARM DDT" ]
+      - [ "19.0.1", "ARM MAP" ]
+      - [ "19.1.2", "ARM DDT" ]
+      - [ "19.1.2", "ARM MAP" ]
   MPI_option:
     widget: select
     label: MPI option
