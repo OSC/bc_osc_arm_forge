@@ -1,7 +1,8 @@
 <%-
 ppn = num_cores.blank? ? 28 : num_cores.to_i
-if node_type == ':hugemem'
+if node_type == ':hugemem' && num_of_nodes.to_i > 16
   ppn = 48
+  num_of_nodes = "16"
 end
 %>
 ---
@@ -10,4 +11,4 @@ batch_connect:
 script:
   native:
     resources:
-      nodes: "<%= bc_num_slots.blank? ? "1" : bc_num_slots.to_i %>:ppn=<%= ppn %><%= node_type %>"
+      nodes: "<%= num_of_nodes.blank? ? "1" : num_of_nodes.to_i %>:ppn=<%= ppn %><%= node_type %>"

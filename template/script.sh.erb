@@ -32,22 +32,20 @@ cd "${HOME}"
 # Load the required environment
 module load intel/18.0.2
 module load mvapich2/2.3
-module load arm-ddt
-module load arm-map
+module load <%= context.version %>
 
 # Launch ddt
-<% if context.version.eql? "ARM DDT" %>
-  <% if context.MPI_option.eql? "MPI program"%>
-    ddt -no-mpi <%= context.program_name %>
-  <% else %>
-
+<% if context.version.include? 'ddt' %>
+  <% if context.MPI_option.eql? "non MPI program" %>
+	  ddt --no-mpi <%= context.program_name %>
+	<% else %>
+    ddt -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.program_name %>
   <% end %>
-  ddt --node= <%= context.num_nodes%> -np <%= context.num_cores %> <%= context.program_name %>
 <% else %>
-  <% if context.MPI_option.eql? "MPI program"%>
-      map --profile --no-mpi <%= context.program_name %>
-   <% else %>
-      map --profile -np <%= context.num_cores %> <%= context.program_name %>
-   <% end %>
+	<% if context.MPI_option.eql? "non MPI program" %>
+	  map --no-mpi <%= context.program_name %>
+	<% else %>
+    map -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.program_name %>
+  <% end %>
 <% end %>
 
