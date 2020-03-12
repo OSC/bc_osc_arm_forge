@@ -38,14 +38,14 @@ module load <%= context.version %>
 
 <% if context.version.include? 'ddt' %>
   <% if context.MPI_option.eql? "non MPI program" %>
-	  ddt --no-mpi <%= context.program_name %>
-	<% else %>
+    ddt --no-mpi <%= context.program_name %>
+  <% else %>
     ddt -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.program_name %>
   <% end %>
 <% else %>
-	<% if context.MPI_option.eql? "non MPI program" %>
-	  map --no-mpi <%= context.program_name %>
-	<% else %>
+  <% if context.MPI_option.eql? "non MPI program" %>
+     map --no-mpi <%= context.program_name %>
+  <% else %>
     map -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.program_name %>
   <% end %>
 <% end %>
