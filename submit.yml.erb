@@ -5,10 +5,18 @@ if node_type == ':hugemem' && num_of_nodes.to_i > 16
   num_of_nodes = "16"
 end
 %>
+
+# allocate one gpu if degugging a cuda program
+<%-
+alloc_gpu = ""
+if cuda_option.eql? 'Yes'
+  alloc_gpu = ":gpus=1"
+end
+%>
 ---
 batch_connect:
   template: vnc
 script:
   native:
     resources:
-      nodes: "<%= num_of_nodes.blank? ? "1" : num_of_nodes.to_i %>:ppn=<%= ppn %><%= node_type %>"
+      nodes: "<%= num_of_nodes.blank? ? "1" : num_of_nodes.to_i %>:ppn=<%= ppn %><%= node_type %><%= alloc_gpu %>"

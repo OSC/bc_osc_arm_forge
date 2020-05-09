@@ -6,6 +6,7 @@ form:
   - bc_num_hours
   - num_cores
   - num_of_nodes
+  - cuda_option
   - MPI_option
   - program_name
   - node_type
@@ -74,9 +75,15 @@ attributes:
       - [ "arm-map/19.0.1" ]
       - [ "arm-ddt/19.1.2" ]
       - [ "arm-map/19.1.2" ]
+  cuda_option: 
+    widget: select
+    label: CUDA option
+    options: 
+      - ["No"]
+      - ["Yes"]
   MPI_option:
     widget: select
     label: MPI option
     options:
+      - ["Non-MPI Program"]
       - ["MPI Program"]
-      - ["non MPI Program"]
