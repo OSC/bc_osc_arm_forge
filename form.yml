@@ -6,9 +6,9 @@ form:
   - bc_num_hours
   - num_cores
   - num_of_nodes
-  - cuda_option
   - MPI_option
-  - program_name
+  - input_file
+  - cuda_option
   - node_type
   - bc_vnc_resolution
   - bc_email_on_started
@@ -39,8 +39,10 @@ attributes:
   bc_account:
     label: "Project"
     help: "You can leave this blank if **not** in multiple projects."
-  program_name:
-    label: Program Name/Path and [args]
+  input_file:
+    label: 'Program path [Args]'
+    data-filepicker: true
+    data-default-directory: '/users/PZS0715/kalattar/'
     help: Program to be debugged **must** have the **"-g flag"** when compiled. Also **remove** optimization or set to -O0. **This does not apply to ARM Map.**
   node_type:
     widget: select
@@ -75,15 +77,12 @@ attributes:
       - [ "arm-map/19.0.1" ]
       - [ "arm-ddt/19.1.2" ]
       - [ "arm-map/19.1.2" ]
-  cuda_option: 
-    widget: select
-    label: CUDA option
-    options: 
-      - ["No"]
-      - ["Yes"]
   MPI_option:
     widget: select
     label: MPI option
     options:
       - ["Non-MPI Program"]
       - ["MPI Program"]
+  cuda_option:
+    widget: check_box
+    label: CUDA program

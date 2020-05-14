@@ -38,17 +38,17 @@ module load <%= context.version %>
 
 <% if context.version.include? 'ddt' %>
   <% if context.MPI_option.eql? "non MPI program" %>
-     ddt --no-mpi <%= context.program_name %>
-  <% elsif context.cuda_option.eql? "Yes" %>
-     ddt --cuda -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.program_name %>
+     ddt --no-mpi <%= context.input_file %>
+  <% elsif context.cuda_option %>
+     ddt --cuda -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.input_file %>
   <% else %>
-     ddt -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.program_name %>
+     ddt -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.input_file %>
   <% end %>
 <% else %>
   <% if context.MPI_option.eql? "non MPI program" %>
-      map --no-mpi <%= context.program_name %>
+      map --no-mpi <%= context.input_file %>
   <% else %>
-      map -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.program_name %>
+      map -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.input_file %>
   <% end %>
 <% end %>
 

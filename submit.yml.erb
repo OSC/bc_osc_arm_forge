@@ -9,7 +9,7 @@ end
 # allocate one gpu if degugging a cuda program
 <%-
 alloc_gpu = ""
-if cuda_option.eql? 'Yes'
+if cuda_option
   alloc_gpu = ":gpus=1"
 end
 %>
