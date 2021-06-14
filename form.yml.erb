@@ -1,14 +1,17 @@
+<%-
+  groups = OodSupport::User.new.groups.sort_by(&:id).tap { |groups|
+    groups.unshift(groups.delete(OodSupport::Process.group))
+  }.map(&:name).grep(/^P./)
+-%>
 ---
-cluster: "owens"
+cluster: 
+  - "owens"
 form:
   - version
-  - bc_account
+  - account
   - bc_num_hours
   - num_cores
-  - num_of_nodes
-  - MPI_option
-  - input_file
-  - cuda_option
+  - bc_num_slots 
   - node_type
   - bc_vnc_resolution
   - bc_email_on_started
@@ -20,30 +23,31 @@ attributes:
     help: |
       Number of cores on node type (4 GB per core unless requesting whole
       node).
-    min: 0
-    max: 48
+    min: 0 
+    max: 28 
     step: 1
     id: 'num_cores'
-  num_of_nodes:
+  bc_num_slots:
     widget: "number_field"
     label: "Number of nodes"
     value: 1
     help: |
       Number of nodes on node type
-    min: 0
-    max: 648
+    min: 1 
     step: 1
-    id: 'num_of_nodes'
   bc_vnc_resolution:
     required: true
-  bc_account:
+  account:
+    widget: select
     label: "Project"
+    options:
+    <%- groups.each do |group| -%>
+      - "<%= group %>"
+    <%- end -%>
     help: "You can leave this blank if **not** in multiple projects."
   input_file:
-    label: 'Program path [Args]'
-    data-filepicker: true
-    data-default-directory: '/users/PZS0715/kalattar/'
-    help: Program to be debugged **must** have the **"-g flag"** when compiled. Also **remove** optimization or set to -O0. **This does not apply to ARM Map.**
+    label: 'Program Path'
+    help: Program to be debugged **must** have the **"-g"** flag when compiled. Also **remove** optimization or set to -O0. **This does not apply to ARM Map.**
   node_type:
     widget: select
     label: "Node type"
@@ -76,13 +80,5 @@ attributes:
       - [ "arm-ddt/19.0.1" ]
       - [ "arm-map/19.0.1" ]
       - [ "arm-ddt/19.1.2" ]
+      - [ "arm-ddt/20.0.3" ]
       - [ "arm-map/19.1.2" ]
-  MPI_option:
-    widget: select
-    label: MPI option
-    options:
-      - ["Non-MPI Program"]
-      - ["MPI Program"]
-  cuda_option:
-    widget: check_box
-    label: CUDA program

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-<%- gpu = context.node_type.include?("vis") -%>
-
 # Clean the environment
 module purge
 
@@ -34,21 +32,10 @@ module load intel/18.0.2
 module load mvapich2/2.3
 module load <%= context.version %>
 
-# Launch ddt
+# Launch arm-ddt/map 
 
 <% if context.version.include? 'ddt' %>
-  <% if context.MPI_option.eql? "non MPI program" %>
-     ddt --no-mpi <%= context.input_file %>
-  <% elsif context.cuda_option %>
-     ddt --cuda -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.input_file %>
-  <% else %>
-     ddt -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.input_file %>
-  <% end %>
+  ddt
 <% else %>
-  <% if context.MPI_option.eql? "non MPI program" %>
-      map --no-mpi <%= context.input_file %>
-  <% else %>
-      map -np <%= context.num_of_nodes.to_i*context.num_cores.to_i %> <%= context.input_file %>
-  <% end %>
+  map
 <% end %>
-
